@@ -9,27 +9,25 @@ class AirplaneTicket(Document):
 	def before_insert(self):
 		self.populate_seat()
 	def validate(self):
-		b=[]
-		for i in self.add_ons:
-			b.append(i.item)
+		b = [i.item for i in self.add_ons]
 		for j in b:
-			c = b.count(j)
-			if c > 1 :
+			if b.count(j) > 1:
 				frappe.throw("You can't buy the same item twice")
-    
+
 		if not self.flight:
 			return  # no flight selected yet
 
-		# Get airplane capacity
-		airplane = frappe.get_doc("Airplane", self.flight)
+		# Fix: get airplane through flight
+		flight_doc = frappe.get_doc("Airplane Flight", self.flight)
+		airplane = frappe.get_doc("Airplane", flight_doc.airplane)
 		capacity = airplane.capacity
 
-		# Count existing tickets for this flight (excluding this doc if updating)
+		# Count existing tickets
 		existing_tickets = frappe.get_all(
 			"Airplane Ticket",
 			filters={
 				"flight": self.flight,
-				"name": ["!=", self.name]  # prevent counting self
+				"name": ["!=", self.name]
 			},
 			limit=0
 		)
