@@ -16,6 +16,26 @@ class AirplaneTicket(Document):
 			c = b.count(j)
 			if c > 1 :
 				frappe.throw("You can't buy the same item twice")
+    
+		if not self.flight:
+			return  # no flight selected yet
+
+		# Get airplane capacity
+		airplane = frappe.get_doc("Airplane", self.flight)
+		capacity = airplane.capacity
+
+		# Count existing tickets for this flight (excluding this doc if updating)
+		existing_tickets = frappe.get_all(
+			"Airplane Ticket",
+			filters={
+				"flight": self.flight,
+				"name": ["!=", self.name]  # prevent counting self
+			},
+			limit=0
+		)
+
+		if len(existing_tickets) >= capacity:
+			frappe.throw(f"Cannot book ticket: Flight {self.flight} has reached its maximum capacity of {capacity} seats.")
 	def before_save(self):
 		total=0
 		for i in self.add_ons:
