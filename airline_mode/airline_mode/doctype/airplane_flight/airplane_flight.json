@@ -24,7 +24,9 @@
   "amended_from",
   "section_break_wppf",
   "is_published",
-  "route"
+  "route",
+  "section_break_ahhh",
+  "crew_members"
  ],
  "fields": [
   {
@@ -140,6 +142,16 @@
    "fieldname": "route",
    "fieldtype": "Data",
    "label": "Route"
+  },
+  {
+   "fieldname": "section_break_ahhh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "crew_members",
+   "fieldtype": "Table",
+   "label": "Crew Members",
+   "options": "Flight Crew Member"
   }
  ],
  "grid_page_length": 50,
@@ -153,7 +165,7 @@
    "link_fieldname": "flight"
   }
  ],
- "modified": "2025-05-28 17:08:47.796381",
+ "modified": "2025-07-09 12:50:30.257946",
  "modified_by": "Administrator",
  "module": "Airline Mode",
  "name": "Airplane Flight",

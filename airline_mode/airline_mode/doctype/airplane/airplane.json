@@ -8,7 +8,9 @@
  "field_order": [
   "model",
   "airline",
-  "capacity"
+  "capacity",
+  "column_break_okgn",
+  "initial_audit_completed"
  ],
  "fields": [
   {
@@ -33,12 +35,22 @@
    "label": "Capacity",
    "non_negative": 1,
    "reqd": 1
+  },
+  {
+   "fieldname": "column_break_okgn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "initial_audit_completed",
+   "fieldtype": "Check",
+   "label": "Initial Audit Completed"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-28 13:17:06.779168",
+ "modified": "2025-07-09 12:33:40.696585",
  "modified_by": "Administrator",
  "module": "Airline Mode",
  "name": "Airplane",
