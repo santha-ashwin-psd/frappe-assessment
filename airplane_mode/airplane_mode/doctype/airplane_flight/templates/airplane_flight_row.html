@@ -1,0 +1,20 @@
+<script src="https://cdn.tailwindcss.com"></script>
+ 
+<div class="border p-2 m-2 rounded  border-black bg-cyan-50">
+	{%set duration = frappe.utils.format_duration(doc.duration) %}
+ {%set date = frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY")%}
+	<div class="text-black text-3xl">{{ doc.airplane }}</div>
+	<div class="flex justify-between">
+		<div class="flex justify-between ">
+			<div class="text-xl text-slate-600 mr-2">{{doc.source_airport_code}}</div>
+			<div class="text-xl text-slate-600 mr-2">&#8594;</div>
+			<div class="text-xl text-slate-600"> {{doc.destination_airport_code}} </div>
+		</div>
+		<div></div>
+	</div>
+	<div class="text-xl mt-4">
+		{{date}} | {{doc.time_of_departure}} | {{duration }}
+	</div>
+	<a href="{{doc.route}}" class="text-sm text-sky-500 no-underline hover:text-cyan-500">view Flight</a>
+	
+</div>

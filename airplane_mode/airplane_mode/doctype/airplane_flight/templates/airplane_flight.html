@@ -1,0 +1,32 @@
+{% extends "templates/web.html" %}
+
+{% block page_content %}
+<script src="https://cdn.tailwindcss.com"></script>
+{%set duration = frappe.utils.format_duration(doc.duration) %}
+{%set date = frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY")%}
+{%set airplane = doc.airplane%}
+{%set airline = frappe.get_doc("Airplane",airplane)%}
+<div class="p-4">
+    <h1 class="text-5xl text-black">{{ title }}</h1>
+    <div class="text-4xl text-black mt-10">Flight Details</div>
+    <div class="p-4 ml-6">
+        <ul class="list-disc pl-5 marker:text-2xl">
+        <li>Airline: {{airline.airline}}</li>
+        <li><div class="flex justify-left">
+			<div class="text-xl text-slate-600 mr-2">{{doc.source_airport_code}}</div>
+			<div class="text-xl text-slate-600 mr-2">&#8594;</div>
+			<div class="text-xl text-slate-600"> {{doc.destination_airport_code}} </div>
+		</div></li>
+        <li>{{date}} | {{doc.time_of_departure}} </li>
+        <li>Duration: {{duration}}</li>
+    </ul>
+    </div>
+    <div >
+        <button class="bg-sky-500 text-white p-4 rounded ml-8  hover:bg-white hover:border hover:border-sky-500">
+           <div class="hover:text-sky-500 "> Book Flight</div>
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+<!-- this is a sample default web page template -->

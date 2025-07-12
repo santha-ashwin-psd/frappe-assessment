@@ -1,14 +1,24 @@
 app_name = "airplane_mode"
 app_title = "Airplane Mode"
 app_publisher = "Santha Ashwin"
-app_description = "An app for airplane management"
-app_email = "santhaashwin@psdigtise.com"
+app_description = "An app for airtravel management"
+app_email = "santhaashwin24@gmail.com"
 app_license = "mit"
 
 # Apps
 # ------------------
 
 # required_apps = []
+scheduler_events = {
+    "monthly": [
+        "airplane_mode.tasks.send_rent_reminders"
+    ]
+}
+scheduler_events = {
+    "daily": [
+        "airplane_mode.utils.generate_rent_payments"
+    ]
+}
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -20,7 +30,7 @@ app_license = "mit"
 # 		"has_permission": "airplane_mode.api.permission.has_app_permission"
 # 	}
 # ]
-
+app_modules = ["Airport Shop Management"]
 # Includes in <head>
 # ------------------
 
